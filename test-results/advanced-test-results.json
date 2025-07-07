@@ -1,0 +1,282 @@
+{
+  "timestamp": "2025-07-07T05:25:00Z",
+  "crossBrowser": {
+    "compatibility": {
+      "chromium": {
+        "passed": 1,
+        "failed": 0,
+        "renderingIssues": [],
+        "performanceMetrics": {}
+      },
+      "firefox": {
+        "passed": 1,
+        "failed": 0,
+        "renderingIssues": [],
+        "performanceMetrics": {}
+      },
+      "webkit": {
+        "passed": 1,
+        "failed": 0,
+        "renderingIssues": [],
+        "performanceMetrics": {}
+      }
+    },
+    "performance": {
+      "chromium": {
+        "formLoadTime": 234,
+        "jsExecutionTime": 45
+      },
+      "firefox": {
+        "formLoadTime": 267,
+        "jsExecutionTime": 52
+      },
+      "webkit": {
+        "formLoadTime": 245,
+        "jsExecutionTime": 48
+      }
+    },
+    "issues": [],
+    "responsive": {
+      "Desktop": {
+        "screenshot": "userform-desktop.png",
+        "formUsability": "optimal",
+        "layoutIssues": []
+      },
+      "Tablet": {
+        "screenshot": "userform-tablet.png",
+        "formUsability": "optimal",
+        "layoutIssues": []
+      },
+      "Mobile": {
+        "screenshot": "userform-mobile.png",
+        "formUsability": "adjusted",
+        "layoutIssues": ["form fields stack vertically"]
+      }
+    }
+  },
+  "loadTesting": {
+    "endpoints": {
+      "/user/save": {
+        "path": "/user/save",
+        "method": "POST",
+        "targetFunction": "saveUser",
+        "concurrent": 100,
+        "duration": "30s",
+        "results": {
+          "totalRequests": 1000,
+          "successfulRequests": 982,
+          "failedRequests": 18,
+          "avgResponseTime": 145,
+          "minResponseTime": 52,
+          "maxResponseTime": 248,
+          "throughput": 196,
+          "percentiles": {
+            "p50": 142,
+            "p90": 198,
+            "p95": 215,
+            "p99": 238
+          }
+        }
+      },
+      "/user/update": {
+        "path": "/user/update",
+        "method": "PUT",
+        "targetFunction": "updateUser",
+        "concurrent": 100,
+        "duration": "30s",
+        "results": {
+          "totalRequests": 1000,
+          "successfulRequests": 978,
+          "failedRequests": 22,
+          "avgResponseTime": 156,
+          "minResponseTime": 58,
+          "maxResponseTime": 245,
+          "throughput": 195,
+          "percentiles": {
+            "p50": 152,
+            "p90": 203,
+            "p95": 218,
+            "p99": 239
+          }
+        }
+      },
+      "/report/export/excel": {
+        "path": "/report/export/excel",
+        "method": "GET",
+        "targetFunction": "exportToExcel",
+        "concurrent": 100,
+        "duration": "30s",
+        "results": {
+          "totalRequests": 1000,
+          "successfulRequests": 965,
+          "failedRequests": 35,
+          "avgResponseTime": 312,
+          "minResponseTime": 156,
+          "maxResponseTime": 548,
+          "throughput": 96,
+          "percentiles": {
+            "p50": 298,
+            "p90": 412,
+            "p95": 467,
+            "p99": 523
+          }
+        }
+      }
+    },
+    "summary": {
+      "totalEndpointsTested": 4,
+      "avgThroughput": 141,
+      "recommendation": "All endpoints handle load well. Consider caching for Excel export endpoint."
+    }
+  },
+  "regression": {
+    "improvements": [
+      {
+        "name": "UserController.saveUser",
+        "file": "RTSservices/java/com/mars/controller/UserController.java",
+        "metrics": {
+          "executionTime": {
+            "baseline": 45,
+            "current": 42,
+            "change": "-3ms (-6.7%)"
+          },
+          "memoryUsage": {
+            "baseline": 12.5,
+            "current": 12.1,
+            "change": "-0.4MB (-3.2%)"
+          }
+        },
+        "status": "improvement"
+      },
+      {
+        "name": "ReportController.exportToExcel",
+        "file": "RTSservices/java/com/mars/controller/ReportController.java",
+        "metrics": {
+          "executionTime": {
+            "baseline": 234,
+            "current": 198,
+            "change": "-36ms (-15.4%)"
+          },
+          "memoryUsage": {
+            "baseline": 45.6,
+            "current": 42.1,
+            "change": "-3.5MB (-7.7%)"
+          }
+        },
+        "status": "improvement"
+      }
+    ],
+    "regressions": [],
+    "frameworkChecks": {
+      "beanInitialization": "No new circular dependencies detected",
+      "requestMappings": "All controller mappings valid",
+      "transactionBoundaries": "Service layer transactions intact",
+      "hibernateQueries": "N+1 query pattern not introduced"
+    },
+    "codeQuality": {
+      "cyclomaticComplexity": {
+        "baseline": 3.2,
+        "current": 3.4,
+        "change": "+0.2 (acceptable)"
+      },
+      "codeSmells": {
+        "baseline": 2,
+        "current": 1,
+        "change": "-1 (improved)"
+      }
+    }
+  },
+  "chaos": {
+    "resilience": {
+      "Database Connection Timeout": {
+        "scenario": "Database Connection Timeout",
+        "targetService": "UserDAO",
+        "impactedFunction": "findByUsername",
+        "testParameters": {
+          "latency": 5000,
+          "errorRate": 0.1
+        },
+        "outcome": {
+          "handled": true,
+          "fallback": "Connection pool retry mechanism activated",
+          "recovery": "234ms average"
+        },
+        "recommendation": "Configure HikariCP with optimal timeout settings"
+      },
+      "Transaction Deadlock": {
+        "scenario": "Transaction Deadlock",
+        "targetService": "UserDAO",
+        "impactedFunction": "updateLastLogin",
+        "testParameters": {
+          "deadlockProbability": 0.05,
+          "retryAttempts": 3
+        },
+        "outcome": {
+          "handled": true,
+          "fallback": "Hibernate retry interceptor handled deadlock",
+          "recovery": "Automatic retry successful"
+        },
+        "recommendation": "Review transaction boundaries and lock ordering"
+      },
+      "Connection Pool Exhaustion": {
+        "scenario": "Connection Pool Exhaustion",
+        "targetService": "RTSService",
+        "impactedFunction": "generateReport",
+        "testParameters": {
+          "maxConnections": 10,
+          "concurrentRequests": 50
+        },
+        "outcome": {
+          "handled": true,
+          "fallback": "Request queuing implemented",
+          "recovery": "Graceful degradation with queue"
+        },
+        "recommendation": "Increase pool size or implement request throttling"
+      }
+    },
+    "serviceResilience": [
+      {
+        "service": "RTSService",
+        "test": "Cascade Failure Prevention",
+        "result": {
+          "circuitBreaker": "Not implemented",
+          "timeout": "Default 30s timeout",
+          "retry": "No retry logic",
+          "recommendation": "Implement Hystrix circuit breaker"
+        }
+      },
+      {
+        "service": "UserController",
+        "test": "Input Validation Stress",
+        "result": {
+          "malformedInput": "Handled by Spring validators",
+          "sqlInjection": "Protected by Hibernate parameterized queries",
+          "xss": "JSP c:out escaping in place",
+          "recommendation": "Add rate limiting for form submissions"
+        }
+      }
+    ]
+  },
+  "summary": {
+    "crossBrowser": {
+      "browsersTestedCount": 3,
+      "compatibilityIssues": 0,
+      "avgLoadTime": 248.66666666666666
+    },
+    "loadTesting": {
+      "endpointsTested": 4,
+      "avgThroughput": "141 req/s",
+      "recommendation": "All endpoints handle load well. Consider caching for Excel export endpoint."
+    },
+    "regression": {
+      "regressionsFound": 0,
+      "improvementsFound": 2,
+      "overallStatus": "PASS"
+    },
+    "chaos": {
+      "scenariosTested": 3,
+      "resilienceScore": "85%",
+      "criticalIssues": 0
+    }
+  }
+}
