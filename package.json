@@ -1,11 +1,32 @@
 {
   "name": "automated-testing-egov",
   "version": "1.0.0",
+  "description": "Automated E2E testing with change detection for EGOV-RTS-NMC",
+  "main": "index.js",
   "scripts": {
-    "test": "node test-scripts/run-tests.js"
+    "test": "node test-scripts/run-tests.js",
+    "analyze": "node test-scripts/analyze-repository.js",
+    "generate-tests": "node test-scripts/spring-mvc-test-generator.js",
+    "execute": "node test-scripts/execute-tests.js",
+    "advanced": "node test-scripts/advanced-testing-executor.js",
+    "report": "open test-results/index.html"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pkumv1/automated-testing-20250107-095530.git"
+  },
+  "keywords": [
+    "e2e-testing",
+    "self-healing",
+    "change-detection",
+    "spring-mvc",
+    "test-automation"
+  ],
   "dependencies": {
     "playwright": "^1.48.0",
     "axios": "^1.6.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
   }
 }
