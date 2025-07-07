@@ -1,0 +1,11 @@
+{
+  "name": "automated-testing-egov",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "node test-scripts/run-tests.js"
+  },
+  "dependencies": {
+    "playwright": "^1.48.0",
+    "axios": "^1.6.0"
+  }
+}
