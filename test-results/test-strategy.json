@@ -1,0 +1,43 @@
+{
+  "repositoryContext": {
+    "type": "Java Spring MVC E-governance Application",
+    "complexity": "Medium-High",
+    "criticalAreas": ["User Management", "Authentication", "Report Generation"]
+  },
+  "targetedTests": {
+    "controllers": [
+      {
+        "file": "UserController.java",
+        "methods": ["saveUser", "updateUser", "validateUserInput"]
+      },
+      {
+        "file": "ReportController.java",
+        "methods": ["exportToExcel"]
+      }
+    ],
+    "services": [
+      {
+        "file": "RTSService.java",
+        "methods": ["processRequest", "generateReport"]
+      }
+    ],
+    "dataAccess": [
+      {
+        "file": "UserDAO.java",
+        "methods": ["findByUsername", "updateLastLogin"]
+      }
+    ],
+    "ui": [
+      {
+        "file": "userForm.jsp",
+        "components": ["form validation", "input fields"]
+      }
+    ]
+  },
+  "testCount": {
+    "unit": 8,
+    "integration": 3,
+    "ui": 2,
+    "api": 4
+  }
+}

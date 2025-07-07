@@ -1,0 +1,64 @@
+{
+  "commits": {
+    "current": "430275b7654c8366408d505e90d785213dff7f14",
+    "previous": "53adbf25de34cb87869a1bd2a24d50b33c262b9b"
+  },
+  "changedFiles": {
+    "RTSservices/java/com/mars/controller/UserController.java": {
+      "lines": {
+        "added": [45, 46, 47, 120, 121, 122],
+        "deleted": [44, 119],
+        "modified": [50, 51, 125, 126]
+      },
+      "functions": {
+        "saveUser": "modified",
+        "updateUser": "modified",
+        "validateUserInput": "added"
+      }
+    },
+    "RTSservices/java/com/mars/service/RTSService.java": {
+      "lines": {
+        "added": [234, 235, 236, 237],
+        "modified": [240, 241, 245]
+      },
+      "functions": {
+        "processRequest": "modified",
+        "generateReport": "modified"
+      }
+    },
+    "RTSservices/java/com/mars/dao/UserDAO.java": {
+      "lines": {
+        "added": [88, 89],
+        "modified": [92, 93, 94]
+      },
+      "functions": {
+        "findByUsername": "modified",
+        "updateLastLogin": "added"
+      }
+    },
+    "RTSservices/web/pages/user/userForm.jsp": {
+      "lines": {
+        "added": [15, 16, 17, 18],
+        "modified": [25, 26, 30]
+      },
+      "uiComponents": ["form validation", "new input fields", "error display"]
+    },
+    "RTSservices/java/com/mars/controller/ReportController.java": {
+      "lines": {
+        "added": [67, 68, 69],
+        "modified": [75, 76]
+      },
+      "functions": {
+        "exportToExcel": "modified"
+      }
+    }
+  },
+  "summary": {
+    "filesModified": 5,
+    "totalLinesAdded": 17,
+    "totalLinesDeleted": 3,
+    "totalLinesModified": 12,
+    "functionsAdded": 2,
+    "functionsModified": 6
+  }
+}

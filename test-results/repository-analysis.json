@@ -1,0 +1,30 @@
+{
+  "repositoryAnalysis": {
+    "metrics": {
+      "totalLOC": 8543,
+      "repoSize": "2.1 MB",
+      "fileCount": 127,
+      "languages": {
+        "Java": "85%",
+        "XML": "8%",
+        "SQL": "5%",
+        "Properties": "2%"
+      },
+      "outputLanguage": "Java (1.6)"
+    },
+    "technical": {
+      "frameworks": ["Spring MVC 4.0.6", "Hibernate 4.3.6", "Apache Tiles 2.1.4"],
+      "libraries": ["Apache POI 4.1.2", "JSON", "Velocity 1.5", "EhCache 1.6.0", "DWR"],
+      "buildTools": ["Maven 3.2", "Ant"],
+      "testingTools": ["JUnit 4.5"],
+      "databases": ["MySQL/PostgreSQL (via JDBC)"],
+      "apis": ["REST", "DWR (Direct Web Remoting)"]
+    },
+    "features": {
+      "authentication": "Spring Security 4.0.6",
+      "mainFeatures": ["E-governance RTS", "User Management", "Report Generation", "Document Processing"],
+      "apiEndpoints": 23,
+      "uiComponents": 47
+    }
+  }
+}
