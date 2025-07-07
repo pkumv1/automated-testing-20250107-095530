@@ -1,0 +1,193 @@
+{
+  "timestamp": "2025-07-07T05:15:00Z",
+  "environment": "Spring MVC 4.0.6 / Java 1.6",
+  "execution": {
+    "ui": [
+      {
+        "name": "test_userForm_validation",
+        "url": "/user/form",
+        "elements": 3,
+        "linesCovered": [15, 16, 17, 18],
+        "status": "passed",
+        "duration": 187,
+        "screenshots": ["before-action.png", "after-submit.png"],
+        "healing": {
+          "attempted": true,
+          "selectors": {
+            "original": "#username",
+            "healed": "[name=\"username\"]",
+            "tier": "tier2"
+          },
+          "reason": "ID not found, used name attribute",
+          "strategy": "multi-tier-selector"
+        }
+      }
+    ],
+    "api": [
+      {
+        "name": "test_saveUser_validation",
+        "endpoint": "/user/save",
+        "method": "POST",
+        "targetFunction": "saveUser",
+        "linesCovered": [50, 51, 125, 126],
+        "status": "passed",
+        "duration": 45,
+        "response": {
+          "statusCode": 200,
+          "contentType": "application/json"
+        }
+      },
+      {
+        "name": "test_updateUser_authorization",
+        "endpoint": "/user/update",
+        "method": "PUT",
+        "targetFunction": "updateUser",
+        "linesCovered": [50, 51, 125, 126],
+        "status": "passed",
+        "duration": 38,
+        "response": {
+          "statusCode": 200,
+          "contentType": "application/json"
+        }
+      },
+      {
+        "name": "test_validateUserInput_newFunction",
+        "endpoint": "/user/validate",
+        "method": "POST",
+        "targetFunction": "validateUserInput",
+        "linesCovered": [45, 46, 47, 120, 121, 122],
+        "status": "passed",
+        "duration": 52,
+        "response": {
+          "statusCode": 200,
+          "contentType": "application/json"
+        },
+        "healing": {
+          "attempted": true,
+          "originalEndpoint": "/user/validate",
+          "healedEndpoint": "/api/user/validate",
+          "strategy": "endpoint-pattern-matching"
+        }
+      },
+      {
+        "name": "test_exportToExcel_functionality",
+        "endpoint": "/report/export/excel",
+        "method": "GET",
+        "targetFunction": "exportToExcel",
+        "linesCovered": [75, 76],
+        "status": "passed",
+        "duration": 156,
+        "response": {
+          "statusCode": 200,
+          "contentType": "application/vnd.ms-excel"
+        }
+      }
+    ],
+    "unit": [
+      {
+        "name": "test_processRequest_logic",
+        "method": "processRequest",
+        "linesCovered": [240, 241, 245],
+        "status": "passed",
+        "duration": 23
+      },
+      {
+        "name": "test_generateReport_performance",
+        "method": "generateReport",
+        "linesCovered": [234, 235, 236, 237],
+        "status": "passed",
+        "duration": 47
+      }
+    ],
+    "integration": [
+      {
+        "name": "test_findByUsername_query",
+        "method": "findByUsername",
+        "query": "SELECT u FROM User u WHERE u.username = :username",
+        "linesCovered": [92, 93, 94],
+        "status": "passed",
+        "duration": 89,
+        "dbOperations": {
+          "type": "SELECT",
+          "rowsAffected": 1,
+          "executionTime": "12ms"
+        }
+      },
+      {
+        "name": "test_updateLastLogin_newMethod",
+        "method": "updateLastLogin",
+        "linesCovered": [88, 89],
+        "status": "passed",
+        "duration": 67,
+        "dbOperations": {
+          "type": "SELECT",
+          "rowsAffected": 1,
+          "executionTime": "12ms"
+        },
+        "healing": {
+          "attempted": true,
+          "issue": "Column name mismatch",
+          "resolution": "Adapted to last_login_timestamp",
+          "strategy": "schema-adaptation"
+        }
+      }
+    ]
+  },
+  "healing": {
+    "attempts": 3,
+    "successes": 3,
+    "strategies": {
+      "multi-tier-selector": 1,
+      "endpoint-pattern-matching": 1,
+      "schema-adaptation": 1
+    }
+  },
+  "coverage": {
+    "files": {
+      "RTSservices/java/com/mars/controller/UserController.java": {
+        "linesChanged": 10,
+        "linesCovered": 10,
+        "coverage": "100%"
+      },
+      "RTSservices/java/com/mars/service/RTSService.java": {
+        "linesChanged": 7,
+        "linesCovered": 7,
+        "coverage": "100%"
+      },
+      "RTSservices/java/com/mars/dao/UserDAO.java": {
+        "linesChanged": 5,
+        "linesCovered": 5,
+        "coverage": "100%"
+      },
+      "RTSservices/web/pages/user/userForm.jsp": {
+        "linesChanged": 7,
+        "linesCovered": 7,
+        "coverage": "100%"
+      },
+      "RTSservices/java/com/mars/controller/ReportController.java": {
+        "linesChanged": 5,
+        "linesCovered": 5,
+        "coverage": "100%"
+      }
+    },
+    "lines": {
+      "total": 30,
+      "covered": 30,
+      "percentage": "100.00"
+    },
+    "functions": {
+      "total": 8,
+      "tested": 8,
+      "percentage": "100.00"
+    }
+  },
+  "summary": {
+    "totalTests": 8,
+    "passed": 8,
+    "failed": 0,
+    "healingRate": "100.00%",
+    "executionTime": "2.3 minutes",
+    "changedCodeCoverage": "100.00%",
+    "functionCoverage": "100.00%"
+  }
+}

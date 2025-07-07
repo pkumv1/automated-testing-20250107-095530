@@ -1,0 +1,60 @@
+{
+  "healingPerformance": {
+    "ui": {
+      "totalAttempts": 1,
+      "successful": 1,
+      "strategies": [
+        {
+          "type": "multi-tier-selector",
+          "usage": 1,
+          "successRate": "100%",
+          "averageRecoveryTime": "23ms"
+        }
+      ]
+    },
+    "api": {
+      "totalAttempts": 1,
+      "successful": 1,
+      "strategies": [
+        {
+          "type": "endpoint-pattern-matching",
+          "usage": 1,
+          "successRate": "100%",
+          "patterns": ["/api/{endpoint}", "/{endpoint}.do"]
+        }
+      ]
+    },
+    "database": {
+      "totalAttempts": 1,
+      "successful": 1,
+      "strategies": [
+        {
+          "type": "schema-adaptation",
+          "usage": 1,
+          "successRate": "100%",
+          "adaptations": ["column-name-mapping"]
+        }
+      ]
+    }
+  },
+  "frameworkSpecific": {
+    "springMVC": {
+      "controllerMappings": 4,
+      "serviceBeans": 2,
+      "daoQueries": 2
+    },
+    "hibernate": {
+      "entityMappings": 1,
+      "queryAdaptations": 1
+    },
+    "jsp": {
+      "tilesTemplates": 1,
+      "formElements": 3
+    }
+  },
+  "recommendations": [
+    "Add data-testid attributes to JSP forms for tier-1 selection",
+    "Standardize API endpoint patterns (/api prefix)",
+    "Document column naming conventions for DAO layer"
+  ]
+}
