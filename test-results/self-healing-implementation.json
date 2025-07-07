@@ -1,0 +1,57 @@
+{
+  "implementation": {
+    "uiHealing": {
+      "strategies": [
+        "ID-based selection",
+        "CSS class fallback",
+        "Name attribute",
+        "Text content matching",
+        "XPath relative",
+        "AI pattern detection"
+      ],
+      "frameworkOptimizations": {
+        "JSP": "Tiles template awareness",
+        "Spring": "Form tag handling",
+        "DWR": "Async call adaptation"
+      }
+    },
+    "apiHealing": {
+      "strategies": [
+        "Endpoint variation testing",
+        "Spring MVC pattern matching",
+        "DWR protocol adaptation",
+        "REST/SOAP detection"
+      ],
+      "patterns": [
+        "/api/{endpoint}",
+        "/rest/{endpoint}",
+        "/{endpoint}.do",
+        "/dwr/call/{service}.{method}"
+      ]
+    },
+    "changeAwareness": {
+      "fileTracking": true,
+      "lineNumberPrecision": true,
+      "functionIsolation": true,
+      "dependencyMapping": true
+    }
+  },
+  "generatedTests": {
+    "total": 15,
+    "byType": {
+      "controller": 4,
+      "service": 2,
+      "dao": 2,
+      "ui": 1,
+      "integration": 3,
+      "api": 3
+    },
+    "coverageMap": {
+      "UserController.java": [45, 46, 47, 50, 51, 120, 121, 122, 125, 126],
+      "RTSService.java": [234, 235, 236, 237, 240, 241, 245],
+      "UserDAO.java": [88, 89, 92, 93, 94],
+      "userForm.jsp": [15, 16, 17, 18, 25, 26, 30],
+      "ReportController.java": [67, 68, 69, 75, 76]
+    }
+  }
+}
