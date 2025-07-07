@@ -1,0 +1,70 @@
+{
+  "timestamp": "2025-07-07T05:30:00Z",
+  "repository": {
+    "name": "EGOV-RTS-NMC",
+    "size": "2.1 MB",
+    "totalLOC": 8543,
+    "fileCount": 127,
+    "primaryLanguage": "Java (85%)",
+    "frameworks": ["Spring MVC 4.0.6", "Hibernate 4.3.6"],
+    "buildTool": "Maven 3.2"
+  },
+  "changes": {
+    "filesModified": 5,
+    "linesChanged": 30,
+    "functionsModified": 8,
+    "commits": {
+      "previous": "53adbf25de34cb87869a1bd2a24d50b33c262b9b",
+      "current": "430275b7654c8366408d505e90d785213dff7f14"
+    }
+  },
+  "testExecution": {
+    "total": 8,
+    "passed": 8,
+    "failed": 0,
+    "coverage": {
+      "changedCode": "100%",
+      "functions": "100%",
+      "files": "100%"
+    },
+    "duration": "2.3 minutes"
+  },
+  "selfHealing": {
+    "attempts": 3,
+    "successful": 3,
+    "rate": "100%",
+    "strategies": [
+      "multi-tier-selector",
+      "endpoint-pattern-matching",
+      "schema-adaptation"
+    ]
+  },
+  "advancedTesting": {
+    "crossBrowser": {
+      "tested": ["Chrome", "Firefox", "Safari"],
+      "issues": 0,
+      "compatibility": "100%"
+    },
+    "loadTesting": {
+      "avgThroughput": "141 req/s",
+      "endpointsTested": 4,
+      "performance": "Stable"
+    },
+    "regression": {
+      "found": 0,
+      "improvements": 2
+    },
+    "chaos": {
+      "resilienceScore": "85%",
+      "criticalIssues": 0
+    }
+  },
+  "recommendations": [
+    "Add data-testid attributes to JSP forms for tier-1 selection",
+    "Implement caching for Excel export endpoint",
+    "Consider adding circuit breaker pattern for RTSService",
+    "Document column naming conventions for DAO layer"
+  ],
+  "overallStatus": "PASS",
+  "confidence": "HIGH"
+}
